@@ -1,0 +1,4 @@
+/* Keep decorative certification artwork inside the viewport on small screens. */
+.certifications {
+  overflow: hidden;
+}
