@@ -1,0 +1,25 @@
+name: Import project source
+
+on:
+  push:
+    paths:
+      - inka-forest-source.tar.gz
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract project
+        run: |
+          tar -xzf inka-forest-source.tar.gz
+          rm inka-forest-source.tar.gz
+          rm .github/workflows/import-source.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Import responsive Inka Forest website"
+          git push
